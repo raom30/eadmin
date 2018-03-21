@@ -25,7 +25,7 @@ public class DocumentoPropuestaTest {
 
 	}	
 	@Test
-	public void comprobarGetterPropuesta() {
+	public void comprobarGetterPropuestas() {
 		assertTrue(docP1.getCodigoPropuesta().equals(CODIGO_PROPUESTA));
 		assertTrue(docP1.getEjercicio().equals(EJERCICIO));
 		assertTrue(docP1.getGrupoPolitico().equals(GRUPO_POLITICO));
