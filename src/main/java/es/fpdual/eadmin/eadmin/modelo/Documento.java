@@ -7,7 +7,7 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 
 	private Boolean publico;
 	private EstadoDocumento estado;
-	private Long codigoVerificacion;
+	private String codigoVerificacion;
 
 	public Documento(Integer codigo, String nombre, Date fechaCreacion,Date fechaUltimaActualizacion, Boolean publico, EstadoDocumento estado) {
 		super(codigo,nombre,fechaCreacion,fechaUltimaActualizacion);
@@ -29,5 +29,10 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 	public String toString() {
 		return "Documento con código " + codigo ;
 	}
-	
+	public String codigoVerificacion() {
+		String cadena = codigo + nombre + fechaCreacion +
+				fechaUltimaActualizacion + publico + estado;
+		return cadena;
+				
+	}
 }
