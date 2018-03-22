@@ -11,6 +11,7 @@ public class DocumentoPropuestaTest {
 	
 	private static final Integer CODIGO_PROPUESTA = 000005;
 	private static final Integer EJERCICIO = 5;
+	private static final Date FECHA_ULTIMA_MOFICACION = new Date();
 	private static final String GRUPO_POLITICO = "X";
 	private static final Date FECHA_CREACION = new Date();
 	private static final String NOMBRE_DOCUMENTO = "nombre";
@@ -20,7 +21,7 @@ public class DocumentoPropuestaTest {
 	
 	@Before
 	public void inicializarCadaTest() {
-		docP1 = new DocumentoPropuesta(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO,
+		docP1 = new DocumentoPropuesta(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,FECHA_ULTIMA_MOFICACION, DOCUMENTO_PUBLICO,
 				EstadoDocumento.ACTIVO,CODIGO_PROPUESTA,EJERCICIO,GRUPO_POLITICO);
 
 	}	

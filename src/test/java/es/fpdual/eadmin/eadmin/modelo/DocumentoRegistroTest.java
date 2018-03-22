@@ -11,6 +11,7 @@ public class DocumentoRegistroTest {
 	private static final String CODIGO_REGISTRO = "00001X";
 	private static final String DNI_INTERESADO = "15404154E";
 	private static final Date FECHA_CREACION = new Date();
+	private static final Date FECHA_ULTIMA_MOFICACION = new Date();
 	private static final String NOMBRE_DOCUMENTO = "nombre";
 	private static final Boolean DOCUMENTO_PUBLICO = true;
 	private static final Integer CODIGO_DOCUMENTO = 1;
@@ -18,10 +19,10 @@ public class DocumentoRegistroTest {
 	
 	@Before
 	public void inicializarCadaTest() {
-		docR1 = new DocumentoRegistro(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO,
-				EstadoDocumento.ACTIVO,CODIGO_REGISTRO,DNI_INTERESADO);
-
+		docR1 = new DocumentoRegistro(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,FECHA_ULTIMA_MOFICACION, DOCUMENTO_PUBLICO,
+				EstadoDocumento.ACTIVO,DNI_INTERESADO,CODIGO_REGISTRO);
 	}
+	
 	@Test
 	public void comprobarGetterDocumentoRegistro() {
 		assertTrue(docR1.getCodigoRegistro().equals(CODIGO_REGISTRO));
