@@ -12,6 +12,7 @@ import org.junit.Test;
 public class DocumentoContableTest {
 	
 	private static final BigDecimal IMPORTE = new BigDecimal(2.05);
+	private static final Date FECHA_ULTIMA_MOFICACION = new Date();
 	private static final String DNI_INTERESADO = "15404154E";
 	private static final Date FECHA_CREACION = new Date();
 	private static final String NOMBRE_DOCUMENTO = "nombre";
@@ -21,7 +22,7 @@ public class DocumentoContableTest {
 	
 	@Before
 	public void inicializarCadaTest() {
-		docC1 = new DocumentoContable(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO,
+		docC1 = new DocumentoContable(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,FECHA_ULTIMA_MOFICACION, DOCUMENTO_PUBLICO,
 				EstadoDocumento.ACTIVO,IMPORTE,DNI_INTERESADO);
 
 	}
