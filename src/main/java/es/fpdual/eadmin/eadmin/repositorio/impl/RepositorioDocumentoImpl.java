@@ -3,6 +3,7 @@ package es.fpdual.eadmin.eadmin.repositorio.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -40,15 +41,10 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
 	@Override
 	public void eliminarDocumento(Integer codigo) {
-		Documento documentoEncontrado = null;
-		for(int i=0; i < documentos.size();i++) {
-			if(documentos.get(i).getCodigo().equals(codigo)) {
-				documentoEncontrado = documentos.get(i);
-				break;
-			}
-		}
-		if(Objects.nonNull(documentoEncontrado)) {//esto es lo mismo que documentoEncontrado == null
-			documentos.remove(documentoEncontrado);
+		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> d.getCodigo().equals(codigo)).findFirst();
+		
+		if(documentoEncontrado.isPresent()) {//esto es lo mismo que documentoEncontrado == null
+			documentos.remove(documentoEncontrado.get());
 		}
 		
 	}
