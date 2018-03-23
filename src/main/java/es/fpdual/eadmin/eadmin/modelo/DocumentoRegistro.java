@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class DocumentoRegistro extends Documento {
 	
-	private String dniInteresado;
-	private String codigoRegistro;
+	private final String dniInteresado;
+	private final String codigoRegistro;
 
 	public DocumentoRegistro(Integer codigo, String nombre, Date fechaCreacion,Date fechaUltimaActualizacion, Boolean publico,
 			EstadoDocumento estado, String dniInteresado, String codigoRegistro) {

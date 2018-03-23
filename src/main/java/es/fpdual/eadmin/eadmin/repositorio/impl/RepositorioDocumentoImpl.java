@@ -13,7 +13,7 @@ import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 @Repository
 public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
-	private List<Documento> documentos = new ArrayList<>();
+	private final List<Documento> documentos = new ArrayList<>();
 
 	public List<Documento> getDocumentos() {
 		return documentos;

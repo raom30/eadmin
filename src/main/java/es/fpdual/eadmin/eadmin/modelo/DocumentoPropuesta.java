@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class DocumentoPropuesta extends Documento {
 
-	private Integer codigoPropuesta;
-	private Integer ejercicio;
-	private String grupoPolitico;
+	private final Integer codigoPropuesta;
+	private final Integer ejercicio;
+	private final String grupoPolitico;
 
 	public DocumentoPropuesta(Integer codigo, String nombre, Date fechaCreacion,Date fechaUltimaActualizacion, Boolean publico,
 			EstadoDocumento estado, Integer codigoPropuesta, Integer ejercicio, String grupoPolitico) {
