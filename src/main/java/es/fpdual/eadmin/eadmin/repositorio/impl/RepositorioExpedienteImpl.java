@@ -46,15 +46,37 @@ public class RepositorioExpedienteImpl implements RepositorioExpediente {
 
 	@Override
 	public Expediente asociarDocumentoAlExpediente(Integer codigoExpediente, Documento documento) {
-		Optional<Expediente> expedienteEncontrado = expedientes.stream().filter(e -> e.getCodigo().equals(codigoExpediente))
-				.findFirst();
-		
+		Optional<Expediente> expedienteEncontrado = expedientes.stream()
+				.filter(e -> e.getCodigo().equals(codigoExpediente)).findFirst();
+
+		if (expedienteEncontrado.isPresent()) {
+			expedienteEncontrado.get().getListaDocumento().add(documento);
+			return expedienteEncontrado.get();
+		}
+
 		return null;
 	}
 
 	@Override
-	public Expediente desacionarDocumentoAlExpediente(Integer codigoExpediene, Integer codigoDocumento) {
-		// TODO Auto-generated method stub
+	public Expediente desacionarDocumentoAlExpediente(Integer codigoExpediente, Integer codigoDocumento) {
+		Optional<Expediente> expedienteEncontrado = expedientes.stream()
+				.filter(e -> e.getCodigo().equals(codigoExpediente)).findFirst();
+
+		if (expedienteEncontrado.isPresent()) {
+			localizaYEliminaElDocumentoYDevuelveElDocumento(codigoDocumento, expedienteEncontrado);
+			return expedienteEncontrado.get();
+		}
+
+		return null;
+	}
+
+	private Documento localizaYEliminaElDocumentoYDevuelveElDocumento(Integer codigoDocumento, Optional<Expediente> expedienteEncontrado) {
+		Optional<Documento> documentoEncontrado = expedienteEncontrado.get().getListaDocumento().stream()
+				.filter(d -> d.getCodigo().equals(codigoDocumento)).findFirst();
+		if (documentoEncontrado.isPresent()) {
+			expedienteEncontrado.get().getListaDocumento().remove(documentoEncontrado.get());
+			return documentoEncontrado.get();
+		}
 		return null;
 	}
 

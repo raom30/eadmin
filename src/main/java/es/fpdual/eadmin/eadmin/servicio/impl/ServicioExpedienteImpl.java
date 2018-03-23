@@ -47,14 +47,13 @@ public class ServicioExpedienteImpl implements ServicioExpediente {
 
 	@Override
 	public Expediente asociarDocumentoAlExpediente(Integer codigoExpediente, Documento documento) {
-		
-		return null;
+		return repositorioExpediente.asociarDocumentoAlExpediente(codigoExpediente, documento);
 	}
 
 	@Override
-	public Expediente desacionarDocumentoAlExpediente(Integer codigoExpediene, Integer codigo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Expediente desacionarDocumentoAlExpediente(Integer codigoExpediente, Integer codigo) {
+		return repositorioExpediente.desacionarDocumentoAlExpediente(codigoExpediente, codigo);
+		 
 	}
 
 	protected Date dameFechaActual() {
