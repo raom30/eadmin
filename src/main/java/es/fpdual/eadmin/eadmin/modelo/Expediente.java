@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Expediente extends ModeloBaseAdministracionElectronica{
 
-	private Date fechaArchivado;
-	private Boolean publico;
-	private EstadoExpediente estado;
-	private List<Documento> ListaDocumento;
+	private final Date fechaArchivado;
+	private final Boolean publico;
+	private final EstadoExpediente estado;
+	private final List<Documento> ListaDocumento;
 
 	public Expediente(Integer codigo, String nombre, Date fechaCreacion,Date fechaUltimaActualizacion, Date fechaArchivado, Boolean publico,
 			EstadoExpediente estado, List<Documento> listaDocumento) {

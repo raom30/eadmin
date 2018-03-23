@@ -6,8 +6,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Documento extends ModeloBaseAdministracionElectronica {
 
-	private Boolean publico;
-	private EstadoDocumento estado;
+	private final Boolean publico;
+	private final EstadoDocumento estado;
 	private String codigoVerificacion;
 
 	public Documento(Integer codigo, String nombre, Date fechaCreacion, Date fechaUltimaActualizacion, Boolean publico,
@@ -17,6 +17,14 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 		this.publico = publico;
 		this.estado = estado;
 	}
+	public Documento(Integer codigo, String nombre, Date fechaCreacion, Date fechaUltimaActualizacion, Boolean publico,
+			EstadoDocumento estado,String codigoVerificacion) {
+		super(codigo, nombre, fechaCreacion, fechaUltimaActualizacion);
+
+		this.publico = publico;
+		this.estado = estado;
+		this.codigoVerificacion = codigoVerificacion;
+	}
 
 	public Boolean getPublico() {
 		return publico;
@@ -25,13 +33,18 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 	public EstadoDocumento getEstado() {
 		return estado;
 	}
+	
+	
+	public String getCodigoVerificacion() {
+		return codigoVerificacion;
+	}
 
 	@Override
 	public String toString() {
 		return "Documento con código " + codigo;
 	}
 
-	public String codigoVerificacion() {
+	public String calcularCodigoVerificacion() {
 		codigoVerificacion = codigo + nombre + fechaCreacion + fechaUltimaActualizacion + publico + estado;
 		return DigestUtils.shaHex(codigoVerificacion);
 	}
