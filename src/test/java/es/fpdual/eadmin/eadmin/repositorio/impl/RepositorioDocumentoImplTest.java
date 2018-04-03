@@ -3,6 +3,7 @@ package es.fpdual.eadmin.eadmin.repositorio.impl;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -67,6 +68,40 @@ public class RepositorioDocumentoImplTest {
 		assertTrue(this.repo.getDocumentos().isEmpty());
 	}
 	
+	@Test 
+	public void comprobamosQueNosDevuelveUnDocumentoPorCodigo() {
+		
+		this.repo.getDocumentos().add(doc1);
+		
+		Documento resultado = this.repo.obtenerDocumentoPorCodigo(doc1.getCodigo());
+
+		assertEquals(resultado,doc1);
+		
+		
+	}
+	@Test 
+	public void comprobamosQueNoNosDevuelveUnDocumentoPorCodigo() {
+		
+		//this.repo.getDocumentos().add(doc1);
+		
+		Documento resultado = this.repo.obtenerDocumentoPorCodigo(doc1.getCodigo());
+
+		assertNotEquals(resultado,doc1);
+		
+		
+	}  
+	
+	@Test
+	public void comprobamosQueNosDevulveTodosLosDocumentos() {
+		
+		List<Documento> lista = this.repo.getDocumentos(); 
+		
+		List<Documento> resultado = this.repo.obtenerTodosLosDocumentos();
+		
+		assertEquals(resultado, lista);
+		
+		
+	}
 	
 
 }
