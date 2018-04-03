@@ -1,4 +1,4 @@
-package es.fpdual.eadmin.eadmin.modelo;
+package es.fpdual.eadmin.eadmin.repositorio.impl;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +12,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ExpedienteTest {
+import es.fpdual.eadmin.eadmin.modelo.Documento;
+import es.fpdual.eadmin.eadmin.modelo.EstadoExpediente;
+import es.fpdual.eadmin.eadmin.modelo.Expediente;
+
+public class RepositorioExpedienteImplTest {
 
 	private static final Date FECHA_CREACION = new Date();
 	private static final Date FECHA_ULTIMA_MOFICACION = new Date();
@@ -23,6 +27,7 @@ public class ExpedienteTest {
 	private final EstadoExpediente estado = EstadoExpediente.ARCHIVADO;
 	private final List<Documento> ListaDocumento = new ArrayList();
 	private Expediente exp1;
+	private RepositorioExpedienteImpl repoE;
 	
 	@Before
 	public void inicializarCadaTest() {
@@ -34,16 +39,9 @@ public class ExpedienteTest {
 				DOCUMENTO_PUBLICO,
 				estado,
 				ListaDocumento);
-
+		repoE = new RepositorioExpedienteImpl();
+		
 	}
-	@Test
-	public void comprobarGetter() {
-
-		assertTrue(exp1.getPublico().equals(DOCUMENTO_PUBLICO));
-		assertTrue(exp1.getEstado().equals(EstadoDocumento.ACTIVO));
-		assertTrue(exp1.getListaDocumento().equals(ListaDocumento));
-		assertTrue(exp1.getFechaArchivado().equals(FECHA_ARCHIVADO));
-
-	}
+	
 
 }
