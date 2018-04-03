@@ -20,7 +20,7 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 	public Documento(Integer codigo, String nombre, Date fechaCreacion, Date fechaUltimaActualizacion, Boolean publico,
 			EstadoDocumento estado,String codigoVerificacion) {
 		super(codigo, nombre, fechaCreacion, fechaUltimaActualizacion);
-
+ 
 		this.publico = publico;
 		this.estado = estado;
 		this.codigoVerificacion = codigoVerificacion;
@@ -46,6 +46,6 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 
 	public String calcularCodigoVerificacion() {
 		codigoVerificacion = codigo + nombre + fechaCreacion + fechaUltimaActualizacion + publico + estado;
-		return DigestUtils.shaHex(codigoVerificacion);
+		return DigestUtils.shaHex(codigoVerificacion); 
 	}
 }

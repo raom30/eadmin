@@ -16,7 +16,7 @@ import es.fpdual.eadmin.eadmin.modelo.EstadoDocumento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
 
-public class ServicioDocumentoImplTest {
+public class ServicioDocumentoImplTest { 
 
 	private ServicioDocumentoImpl servi;
 	private Documento doc1;
@@ -45,7 +45,7 @@ public class ServicioDocumentoImplTest {
 	public void deberiaModificarUnDocumento() {
 
 		final Documento documentoModificado = mock(Documento.class);
-		doReturn(documentoModificado).when(servi).obtenerDocumentoConFechaCorrecta(doc1);
+		doReturn(documentoModificado).when(servi).obtenerDocumentoConFechaUltimaActualizacion(doc1);
 
 		final Documento resultado = this.servi.modificarDocumento(doc1);
 
