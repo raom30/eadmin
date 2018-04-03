@@ -18,7 +18,7 @@ public class Expediente extends ModeloBaseAdministracionElectronica{
 		this.estado = estado;
 		ListaDocumento = listaDocumento;
 	}
-
+ 
 
 	public Boolean getPublico() {
 		return publico;

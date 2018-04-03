@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Repository;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.Expediente;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
@@ -28,8 +29,8 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 			throw new IllegalArgumentException("El documento ya existe");
 		}
 		documentos.add(documento);
-
-	}
+		System.out.println("Insertado");
+	} 
 
 	@Override
 	public void modificarDocumento(Documento documento) {

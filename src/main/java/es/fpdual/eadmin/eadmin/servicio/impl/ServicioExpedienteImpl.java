@@ -25,18 +25,20 @@ public class ServicioExpedienteImpl implements ServicioExpediente {
 
 	@Override
 	public Expediente almacenarExpediene(Expediente expediente) {
-		final Expediente expedienteModificado = obtenerDocumentoConFechaCorrecta(expediente);
+		final Expediente expedienteModificado = obtenerExpedienteConFechaCorrecta(expediente);
 
 		repositorioExpediente.almacenarExpediene(expedienteModificado);
 
 		return expedienteModificado;
-	}
+	} 
 
 	@Override
 	public Expediente modificarExpediente(Expediente expediente) {
-		repositorioExpediente.modificarExpediente(expediente);
-
-		return expediente;
+		final Expediente expedienteModificado = obtenerExpedienteConFechaUltimaActualizacion(expediente);
+		
+		repositorioExpediente.modificarExpediente(expedienteModificado);
+		
+		return expedienteModificado;
 	}
 
 	@Override
@@ -55,14 +57,21 @@ public class ServicioExpedienteImpl implements ServicioExpediente {
 		return repositorioExpediente.desacionarDocumentoAlExpediente(codigoExpediente, codigo);
 		 
 	}
+	protected Expediente obtenerExpedienteConFechaCorrecta(Expediente expediente) {
 
+		return new ExpedienteBuilder().clonar(expediente).conFechaCreacion(dameFechaActual()).construir();
+	
+	}
+
+	protected Expediente obtenerExpedienteConFechaUltimaActualizacion(Expediente expediente) {
+
+		return new ExpedienteBuilder().clonar(expediente).conFechaUltimaActualizacion(dameFechaActual()).construir();
+	
+	}
 	protected Date dameFechaActual() {
 
 		return new Date();// Devuele la fecha actual
 	}
 
-	private Expediente obtenerDocumentoConFechaCorrecta(Expediente expediente) {
-		return new ExpedienteBuilder().clonar(expediente).conFechaCreacion(dameFechaActual()).construir();
-	}
 
 }

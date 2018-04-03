@@ -21,7 +21,7 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 	public ServicioDocumentoImpl(RepositorioDocumento repositorioDocumento) {
 		this.repositorioDocumento = repositorioDocumento;
 	}
-	
+	 
 	@Override
 	public Documento altaDocumento(Documento documento) {
 		

@@ -31,7 +31,7 @@ public class ExpedienteTest {
 				FECHA_CREACION,
 				FECHA_ULTIMA_MOFICACION, 
 				FECHA_ARCHIVADO,
-				DOCUMENTO_PUBLICO,
+				DOCUMENTO_PUBLICO, 
 				estado,
 				ListaDocumento);
 
