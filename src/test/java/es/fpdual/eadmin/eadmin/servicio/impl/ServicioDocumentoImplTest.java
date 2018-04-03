@@ -59,4 +59,18 @@ public class ServicioDocumentoImplTest {
 		this.servi.eliminarDocumento(doc1.getCodigo());
 		verify(this.repo).eliminarDocumento(doc1.getCodigo());
 	}
+	
+	@Test
+	public void deberiaDarFechaActual(){
+		
+		assertEquals(new Date(),((ServicioDocumentoImpl) this.servi).dameFechaActual());
+		
+	}
+	
+	@Test
+	public void deberiaObtenerDocumentoConFechaCorrecta() {
+		
+	}
+	
+	
 }
