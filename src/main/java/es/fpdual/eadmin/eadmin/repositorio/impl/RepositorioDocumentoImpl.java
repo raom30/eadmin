@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Repository;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
+import es.fpdual.eadmin.eadmin.modelo.Expediente;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
 @Repository
@@ -48,6 +50,24 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 			documentos.remove(documentoEncontrado.get());
 		}
 
+	}
+
+	@Override 
+	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
+		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> d.getCodigo().equals(codigo))
+		.findFirst();
+		
+		if (documentoEncontrado.isPresent()) {
+			return documentoEncontrado.get();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public List<Documento> obtenerTodosLosDocumentos() {
+	
+		return documentos;
 	}
 
 }

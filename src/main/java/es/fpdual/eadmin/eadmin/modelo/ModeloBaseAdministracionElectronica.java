@@ -14,7 +14,7 @@ public abstract class ModeloBaseAdministracionElectronica {
 		this.nombre = nombre;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaUltimaActualizacion = fechaUltimaActualizacion;
-	}
+	} 
 
 	public Integer getCodigo() {
 		return codigo;

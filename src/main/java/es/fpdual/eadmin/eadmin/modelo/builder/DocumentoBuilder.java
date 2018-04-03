@@ -21,7 +21,7 @@ public class DocumentoBuilder {
 
 	public DocumentoBuilder conCodigo(Integer codigo) {
 		this.codigo = codigo;
-		return this;
+		return this; 
 	}
 
 	public DocumentoBuilder conNombre(String nombre) {
