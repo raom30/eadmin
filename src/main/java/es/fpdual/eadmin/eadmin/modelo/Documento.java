@@ -48,4 +48,16 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 		codigoVerificacion = codigo + nombre + fechaCreacion + fechaUltimaActualizacion + publico + estado;
 		return DigestUtils.shaHex(codigoVerificacion); 
 	}
+	
+	public String mostrar() {
+		String cadena =  "\n Codigo :"+codigo 
+				+"\n Nombre:  "+ nombre 
+				+"\n Fecha Creacion: "+ fechaCreacion 
+				+"\n Fecha Ultima Actualizacion: "+ fechaUltimaActualizacion 
+				+"\n Publico: "+ publico 
+				+"\n Estado: "+ estado 
+				+"\n Codigo Verificacion: "+ codigoVerificacion ;
+		return cadena;
+	}
+	
 }
