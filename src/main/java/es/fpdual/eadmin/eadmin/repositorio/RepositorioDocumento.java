@@ -11,5 +11,6 @@ public interface RepositorioDocumento {
 	public abstract void eliminarDocumento(Integer codigo);
 	public abstract Documento obtenerDocumentoPorCodigo(Integer codigo);
 	public abstract List<Documento> obtenerTodosLosDocumentos();
+	public abstract String escribirDocumentoFichero();
 	
 }
