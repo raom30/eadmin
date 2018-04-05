@@ -26,12 +26,21 @@ public class CargarDatosInicales implements ApplicationRunner{
 		this.repositorioExpediente = repositorioExpediente;
 	}
 
-
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		this.repositorioDocumento.altaDocumento(new Documento(1, "Documento1", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
 		this.repositorioDocumento.altaDocumento(new Documento(2, "Documento2", FECHA, FECHA, false, EstadoDocumento.APROBADO));
 		this.repositorioDocumento.altaDocumento(new Documento(3, "Documento3", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
+		this.repositorioDocumento.altaDocumento(new Documento(4, "Documento4", FECHA, FECHA, false, EstadoDocumento.APROBADO));
+		this.repositorioDocumento.altaDocumento(new Documento(5, "Documento5", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
+		this.repositorioDocumento.escribirDocumentoFichero();
+		this.repositorioDocumento.modificarDocumento(new Documento(2, "Documento2", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
+		this.repositorioDocumento.modificarDocumento(new Documento(4, "Documento4", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
+		this.repositorioDocumento.eliminarDocumento(1);
+		this.repositorioDocumento.eliminarDocumento(3);
+		this.repositorioDocumento.eliminarDocumento(5);
+		this.repositorioDocumento.escribirDocumentoFichero();
 		this.repositorioExpediente.almacenarExpediene(new Expediente(1, "Expediente1", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
 		this.repositorioExpediente.almacenarExpediene(new Expediente(2, "Expediente2", FECHA, FECHA, FECHA, false, EstadoExpediente.INICIADO, null));
 		this.repositorioExpediente.almacenarExpediene(new Expediente(3, "Expediente3", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
