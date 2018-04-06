@@ -34,7 +34,6 @@ public class CargarDatosInicales implements ApplicationRunner{
 		this.repositorioDocumento.altaDocumento(new Documento(3, "Documento3", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
 		this.repositorioDocumento.altaDocumento(new Documento(4, "Documento4", FECHA, FECHA, false, EstadoDocumento.APROBADO));
 		this.repositorioDocumento.altaDocumento(new Documento(5, "Documento5", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
-		this.repositorioDocumento.escribirDocumentoFichero();
 		this.repositorioDocumento.modificarDocumento(new Documento(2, "Documento2", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
 		this.repositorioDocumento.modificarDocumento(new Documento(4, "Documento4", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
 		this.repositorioDocumento.eliminarDocumento(1);
@@ -44,6 +43,14 @@ public class CargarDatosInicales implements ApplicationRunner{
 		this.repositorioExpediente.almacenarExpediene(new Expediente(1, "Expediente1", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
 		this.repositorioExpediente.almacenarExpediene(new Expediente(2, "Expediente2", FECHA, FECHA, FECHA, false, EstadoExpediente.INICIADO, null));
 		this.repositorioExpediente.almacenarExpediene(new Expediente(3, "Expediente3", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
+		this.repositorioExpediente.almacenarExpediene(new Expediente(4, "Expediente4", FECHA, FECHA, FECHA, false, EstadoExpediente.INICIADO, null));
+		this.repositorioExpediente.almacenarExpediene(new Expediente(5, "Expediente5", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
+		this.repositorioExpediente.modificarExpediente(new Expediente(2, "Expediente2", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
+		this.repositorioExpediente.modificarExpediente(new Expediente(4, "Expediente4", FECHA, FECHA, FECHA, true, EstadoExpediente.INICIADO, null));
+		this.repositorioExpediente.eliminarExpediente(1);
+		this.repositorioExpediente.eliminarExpediente(3);
+		this.repositorioExpediente.eliminarExpediente(5);
+		this.repositorioExpediente.escribirExpedienteFichero();
 		
 		
 	}

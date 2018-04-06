@@ -10,5 +10,6 @@ public interface RepositorioExpediente {
 	void eliminarExpediente(Integer codigo);
 	Expediente asociarDocumentoAlExpediente(Integer codigoExpediente,Documento documento);
 	Expediente desacionarDocumentoAlExpediente(Integer codigoExpediente,Integer codigoDocumento);
+	public abstract String escribirExpedienteFichero();
 
 }
