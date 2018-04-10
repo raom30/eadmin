@@ -46,15 +46,27 @@ public class Expediente extends ModeloBaseAdministracionElectronica{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Expediente) {
-			return codigo.equals(((Expediente) obj).getCodigo()) && nombre.equals(((Expediente) obj).getNombre())
+	if (obj instanceof Expediente) {
+			return codigo.equals(((Expediente) obj).getCodigo()) /*&& nombre.equals(((Expediente) obj).getNombre())
 					&& fechaCreacion.equals(((Expediente) obj).getFechaCreacion())
 					&& publico.equals(((Expediente) obj).getPublico()) 
 					&& estado.equals(((Expediente) obj).getEstado())
 					&& ListaDocumento.equals(((Expediente) obj).getListaDocumento())
-					&& fechaArchivado.equals(((Expediente) obj).getFechaArchivado());
+					&& fechaArchivado.equals(((Expediente) obj).getFechaArchivado())*/;
 		}
 		return false;
+	}
+	
+	public String mostrar() {
+		String cadena =  "\n Codigo :"+codigo 
+				+"\n Nombre:  "+ nombre 
+				+"\n Fecha Creacion: "+ fechaCreacion 
+				+"\n Fecha Ultima Actualizacion: "+ fechaUltimaActualizacion
+				+"\n Fecha Archivado: "+ fechaArchivado 
+				+"\n Publico: "+ publico 
+				+"\n Estado: "+ estado 
+				+"\n Lista de documento: "+ ListaDocumento ;
+		return cadena;
 	}
 
 	@Override

@@ -41,7 +41,12 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 
 	@Override
 	public String toString() {
-		return "Documento con código " + codigo;
+		return " Codigo :"+codigo 
+			+" Nombre:  "+ nombre 
+			+" Fecha Creacion: "+ fechaCreacion 
+			+" Fecha Ultima Actualizacion: "+ fechaUltimaActualizacion 
+			+" Publico: "+ publico 
+			+" Estado: "+ estado;
 	}
 
 	public String calcularCodigoVerificacion() {

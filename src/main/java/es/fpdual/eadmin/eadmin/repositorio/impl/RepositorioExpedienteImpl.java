@@ -1,5 +1,8 @@
 package es.fpdual.eadmin.eadmin.repositorio.impl;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,7 @@ import es.fpdual.eadmin.eadmin.repositorio.RepositorioExpediente;
 public class RepositorioExpedienteImpl implements RepositorioExpediente {
 
 	private final List<Expediente> expedientes = new ArrayList<>();
+	private static final RepositorioExpedienteImpl rei = new RepositorioExpedienteImpl();
 
 	public List<Expediente> getExpedientes() {
 		return expedientes;
@@ -23,6 +27,7 @@ public class RepositorioExpedienteImpl implements RepositorioExpediente {
 		if (expedientes.contains(expediente)) {// si existe el documento pues no entra.
 			throw new IllegalArgumentException("El expediente ya existe");
 		}
+		rei.expedienteTXTAlta(expediente);
 		expedientes.add(expediente);
 		System.out.println("Insertado");
 	}
@@ -30,9 +35,10 @@ public class RepositorioExpedienteImpl implements RepositorioExpediente {
 	@Override
 	public void modificarExpediente(Expediente expediente) {
 		if (!expedientes.contains(expediente)) {// si existe el documento pues no entra.
-			throw new IllegalArgumentException("El documento no existe");
+			throw new IllegalArgumentException("El expediente no existe");
 		} 
-		expedientes.set(expedientes.indexOf(expedientes), expediente);// Busca la posicion y lo cambia
+		rei.expedienteTXTModificar(expediente);
+		expedientes.set(expedientes.indexOf(expediente), expediente);// Busca la posicion y lo cambia
 
 	}
 
@@ -40,7 +46,7 @@ public class RepositorioExpedienteImpl implements RepositorioExpediente {
 	public void eliminarExpediente(Integer codigo) {
 		Optional<Expediente> expedienteEncontrado = expedientes.stream().filter(d -> d.getCodigo().equals(codigo))
 				.findFirst();
-
+		rei.expedienteTXTEliminar(expedienteEncontrado.get());
 		if (expedienteEncontrado.isPresent()) {// esto es lo mismo que documentoEncontrado == null
 			expedientes.remove(expedienteEncontrado.get());
 		}
@@ -80,6 +86,93 @@ public class RepositorioExpedienteImpl implements RepositorioExpediente {
 			return documentoEncontrado.get();
 		}
 		return null;
+	}
+	
+	public String escribirExpedienteFichero() {
+		FileWriter fw = null;
+		PrintWriter pw = null;
+
+		String nFichero = "expedientes.txt";
+
+		try {
+			fw = new FileWriter(nFichero,true);
+			pw = new PrintWriter(fw);
+			for (Expediente e : expedientes) {
+				pw.println(e.mostrar());
+			}
+
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			pw.close();
+		}
+		return "Fichero Guardado";
+
+	}
+	public String expedienteTXTAlta(Expediente expediente) {
+
+		FileWriter fw = null;
+		PrintWriter pw = null;
+
+		String nFichero = "AltaExpediente.txt";
+
+		try {
+			fw = new FileWriter(nFichero,true);
+			pw = new PrintWriter(fw);
+
+			pw.println(expediente);
+
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			pw.close();
+		}
+		return "Fichero Guardado";
+	}
+	public String expedienteTXTModificar(Expediente expediente) {
+
+		FileWriter fw = null;
+		PrintWriter pw = null;
+
+		String nFichero = "MoficiarExpediente.txt";
+
+		try {
+			fw = new FileWriter(nFichero,true);
+			pw = new PrintWriter(fw);
+
+			pw.println(expediente);
+
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			pw.close();
+		}
+		return "Fichero Guardado";
+	}
+	
+	public String expedienteTXTEliminar(Expediente expediente) {
+
+		FileWriter fw = null;
+		PrintWriter pw = null;
+
+		String nFichero = "EliminarExpediente.txt";
+
+		try {
+			fw = new FileWriter(nFichero,true);
+			pw = new PrintWriter(fw);
+
+			pw.println(expediente);
+
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			pw.close();
+		}
+		return "Fichero Guardado";
 	}
 
 }
