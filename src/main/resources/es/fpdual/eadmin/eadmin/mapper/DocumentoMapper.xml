@@ -32,11 +32,11 @@
 			<arg column="fechaCreacion" javaType="Date" />
 			<arg column="fechaUltimaActualizacion" javaType="Date" />
 			<arg column="espublico" javaType="Boolean" />
-			<arg column="estadoDocumento" javaType="Integer" />
+			<arg column="estadoDocumento" javaType="es.fpdual.eadmin.eadmin.modelo.EstadoDocumento" />
 		</constructor>
 	</resultMap>
 	<select id="mostrarDocumento" resultMap="Documento">
-		SELECT * 
+		SELECT codigo,nombre,fechaCreacion,fechaUltimaActualizacion,espublico,estadoDocumento
 		from Elemento where codigo = #{codigo};
 	</select>
 </mapper>

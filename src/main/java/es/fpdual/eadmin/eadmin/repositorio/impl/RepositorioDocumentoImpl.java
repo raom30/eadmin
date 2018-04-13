@@ -28,18 +28,31 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import es.fpdual.eadmin.eadmin.EadminApplication;
+import es.fpdual.eadmin.eadmin.mapper.DocumentoMapper;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
 @Repository
 public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
+	private DocumentoMapper mapper;
+
 	private final List<Documento> documentos = new ArrayList<>();
 	private static final Logger logger = LoggerFactory.getLogger(RepositorioDocumentoImpl.class);
 	private static final RepositorioDocumentoImpl rdi = new RepositorioDocumentoImpl();
+
+	public RepositorioDocumentoImpl() {
+
+	}
+
+	@Autowired
+	public RepositorioDocumentoImpl(DocumentoMapper mapper) {
+		this.mapper = mapper;
+	}
 
 	public List<Documento> getDocumentos() {
 		return documentos;
@@ -50,13 +63,10 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
 		logger.info("Entrado en el metodo : " + rdi.getNombreMetodo());
 
-		if (documentos.contains(documento)) {// si existe el documento pues no entra.
-			throw new IllegalArgumentException("El documento ya existe");
-		}
-
+		
 		rdi.documentoTXTAlta(documento);
-
-		documentos.add(documento);
+		this.mapper.insertarDocumento(documento);
+		//documentos.add(documento);
 		exportExcel("Alta", documento, "Documentos.xlsx");
 		logger.info("{} creado correctamente", documento.toString());
 
@@ -67,12 +77,10 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 	@Override
 	public void modificarDocumento(Documento documento) {
 
-		if (!documentos.contains(documento)) {// si existe el documento pues no entra.
-			throw new IllegalArgumentException("El documento no existe");
-		}
+		this.mapper.actualizarDocumento(documento);
 		rdi.documentoTXTModificar(documento);
 		exportExcel("Modificar", documento, "Documentos.xlsx");
-		documentos.set(documentos.indexOf(documento), documento);// Busca la posicion y lo cambia
+		//documentos.set(documentos.indexOf(documento), documento);// Busca la posicion y lo cambia
 
 	}
 
@@ -81,11 +89,12 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
 		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> d.getCodigo().equals(codigo))
 				.findFirst();
+		
 		rdi.documentoTXTEliminar(documentoEncontrado.get());
 		exportExcel("Eliminar", documentoEncontrado.get(), "Documentos.xlsx");
 		if (documentoEncontrado.isPresent()) {// esto es lo mismo que documentoEncontrado == null
-
-			documentos.remove(documentoEncontrado.get());
+			this.mapper.eliminarDocumento(documentoEncontrado.get());
+			//documentos.remove(documentoEncontrado.get());
 			logger.info("El Documento {} eliminado correctamente", documentoEncontrado);
 		}
 
