@@ -1,5 +1,7 @@
 package es.fpdual.eadmin.eadmin.modelo;
 
+
+import java.util.*;
 public enum EstadoDocumento {
 	
 	ACTIVO(1),APROBADO(2),ELIMINADO(3); //Son objetos y el numero es como si llamara al contructor.
@@ -12,5 +14,10 @@ public enum EstadoDocumento {
 	
 	public int getCodigo() {
 		return codigo;
+	}
+	
+	public static EstadoDocumento obtenerPorCodigo(Integer codigo) {
+		return Arrays.asList(EstadoDocumento.values()).stream()
+				.filter(codigoLista -> codigoLista.getCodigo() == codigo.intValue()).findAny().orElse(null);
 	}
 }

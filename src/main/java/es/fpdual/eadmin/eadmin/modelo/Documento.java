@@ -3,6 +3,8 @@ package es.fpdual.eadmin.eadmin.modelo;
 import java.util.Date;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Documento extends ModeloBaseAdministracionElectronica {
 
@@ -27,18 +29,18 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 		this.codigoVerificacion = codigoVerificacion;
 	}
 
-	public Documento(Integer codigo, String nombre, Date fechaCreacion, Date fechaUltimaActualizacion, Boolean publico,
+	/*public Documento(Integer codigo, String nombre, Date fechaCreacion, Date fechaUltimaActualizacion, Boolean publico,
 			Integer estado) {
 		super(codigo, nombre, fechaCreacion, fechaUltimaActualizacion);
 		this.publico = publico;
-		if(estado.equals(1)) {
+		if (estado.equals(1)) {
 			this.estado = EstadoDocumento.ACTIVO;
-		}else if(estado.equals(1)) {
+		} else if (estado.equals(1)) {
 			this.estado = EstadoDocumento.APROBADO;
-		}else {
+		} else {
 			this.estado = EstadoDocumento.ELIMINADO;
 		}
-	}
+	}*/
 
 	public Boolean getPublico() {
 		return publico;
@@ -69,6 +71,33 @@ public class Documento extends ModeloBaseAdministracionElectronica {
 				+ "\n Fecha Ultima Actualizacion: " + fechaUltimaActualizacion + "\n Publico: " + publico
 				+ "\n Estado: " + estado + "\n Codigo Verificacion: " + codigoVerificacion;
 		return cadena;
+	}
+
+	@Override
+	public int hashCode() {
+
+		HashCodeBuilder hashCodeBuilder = new HashCodeBuilder();
+
+		hashCodeBuilder.appendSuper(super.hashCode());
+		hashCodeBuilder.append(publico);
+		hashCodeBuilder.append(estado);
+
+		return hashCodeBuilder.toHashCode();
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Documento) {
+			final Documento param = (Documento) obj;
+			EqualsBuilder equalsBuilder = new EqualsBuilder();
+			equalsBuilder.appendSuper(super.equals(param));
+			equalsBuilder.append(this.publico, param.publico);
+			equalsBuilder.append(this.estado, param.estado);
+
+			return equalsBuilder.isEquals();
+		}
+		return false;
 	}
 
 }

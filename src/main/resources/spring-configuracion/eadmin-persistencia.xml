@@ -27,9 +27,7 @@
 				<value>classpath*:es/fpdual/eadmin/eadmin/mapper/*.xml</value>
 			</list>
 		</property>
-		<!-- <property name="typeHandlersPackage" value="es.aytos.rigel.contabilidad.persistencia.mapper.handlers, 
-			es.aytos.rigel.terceros.persistencia.mapper.handlers, es.aytos.arquitectura.comun.persistencia.mapper.handlers" 
-			/> -->
+		 <property name="typeHandlersPackage" value="es.fpdual.eadmin.eadmin.mapper.handlers" />   
 		<property name="dataSource" ref="eadminDataSource" />
 		<!-- <property name="databaseIdProvider" ref="databaseIdProvider"/> -->
 		<!-- <property name="plugins"> <list> <bean class="es.aytos.arquitectura.log.mybatis.TrazaOperacionalPlugin"/> 

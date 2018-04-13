@@ -1,18 +1,24 @@
 package es.fpdual.eadmin.eadmin.modelo;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class ModeloBaseAdministracionElectronicaTest {
-	
+import es.fpdual.eadmin.eadmin.util.AbstractoModeloBeanTest;
+
+public class ModeloBaseAdministracionElectronicaTest
+		extends AbstractoModeloBeanTest<ModeloBaseAdministracionElectronica> {
+
 	class ModeloBaseAdministracionElectronicaFAKE extends ModeloBaseAdministracionElectronica {
 
-		public ModeloBaseAdministracionElectronicaFAKE(Integer codigo, String nombre, Date fechaCreacion,Date fechaUltimaActualizacion) {
-			super(codigo, nombre, fechaCreacion,fechaUltimaActualizacion);
+		public ModeloBaseAdministracionElectronicaFAKE(Integer codigo, String nombre, Date fechaCreacion,
+				Date fechaUltimaActualizacion) {
+			super(codigo, nombre, fechaCreacion, fechaUltimaActualizacion);
 		}
 
 	}
@@ -23,50 +29,31 @@ public class ModeloBaseAdministracionElectronicaTest {
 	private static final Date FECHA_ULTIMA_MOFICACION = new Date();
 	private ModeloBaseAdministracionElectronicaFAKE docMBAE1;
 
-	@Before
-	public void inicializarCadaTest() {
-		docMBAE1 = new ModeloBaseAdministracionElectronicaFAKE(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,FECHA_ULTIMA_MOFICACION);
+	@Override
+	public void before() {
+		this.entityA1 = new ModeloBaseAdministracionElectronicaFAKE(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,
+				FECHA_ULTIMA_MOFICACION);
+		this.entityA2 = new ModeloBaseAdministracionElectronicaFAKE(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,
+				FECHA_ULTIMA_MOFICACION);
+		this.entityB = new ModeloBaseAdministracionElectronicaFAKE(CODIGO_DOCUMENTO, "nombre2", FECHA_CREACION,
+				FECHA_ULTIMA_MOFICACION);
 
 	}
 
-	@Test
-	public void comprobarGetterModeloBase() {
-		assertTrue(docMBAE1.getCodigo().equals(CODIGO_DOCUMENTO));
-		assertTrue(docMBAE1.getNombre().equals(NOMBRE_DOCUMENTO));
-		assertTrue(docMBAE1.getFechaCreacion().equals(FECHA_CREACION));
-		assertTrue(docMBAE1.getFechaUltimaActualizacion().equals(FECHA_ULTIMA_MOFICACION));
-	}
-
-	@Test
-	public void deberiDevolverVerdaderoSiNoTieneIgualCodigo() {
-
-		final ModeloBaseAdministracionElectronicaFAKE doc2 = new ModeloBaseAdministracionElectronicaFAKE(
-				CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION,FECHA_ULTIMA_MOFICACION);
-		assertTrue(docMBAE1.equals(doc2));
+	@Override
+	public void deberiaInvocarLosMetodosGetModelo() {
+		assertEquals(CODIGO_DOCUMENTO, this.entityA1.getCodigo());
+		assertEquals(NOMBRE_DOCUMENTO, this.entityA1.getNombre());
+		assertEquals(FECHA_CREACION, this.entityA1.getFechaCreacion());
+		assertEquals(FECHA_ULTIMA_MOFICACION, this.entityA1.getFechaUltimaActualizacion());
 
 	}
 
-	@Test
-	public void deberiDevolverFalseSiNoTieneIgualCodigo() {
-
-		final ModeloBaseAdministracionElectronicaFAKE doc2 = new ModeloBaseAdministracionElectronicaFAKE(5,
-				NOMBRE_DOCUMENTO, FECHA_CREACION,FECHA_ULTIMA_MOFICACION);
-		assertFalse(docMBAE1.equals(doc2));
+	@Override
+	public void deberiaImprimirToString() {
+		// TODO Auto-generated method stub
 
 	}
 
-	@Test
-	public void deberiDevolverFalseSiNoEntraEnElIf() {
-
-		assertFalse(docMBAE1.equals("hola"));
-
-	}
-
-	@Test
-	public void deberiaDevolverHashCodeDelCodigo() {
-		final int resultado = docMBAE1.hashCode();
-		assertEquals(CODIGO_DOCUMENTO.hashCode(), resultado);
-
-	}
 
 }
